@@ -8,29 +8,29 @@ Project 1 - A Random Quote Generator
 ***/
 const quotes = [
     {
-        quote: '"Failure doesn\'t matter: you only have to be right once."',
+        quote: "Failure doesn't matter: you only have to be right once.",
         source: 'Drew Houston',
         citation: 'https://news.mit.edu/2013/commencement-address-houston-0607',
         year: 2013
     },
     {
-        quote: '"Luck is what happens when preparation meets opportunity"',
+        quote: "Luck is what happens when preparation meets opportunity",
         source: 'Seneca'
     },
     {
-        quote: '"Just because someone stumbles and loses their way, it doesn\'t mean they\'re lost forever"',
+        quote: "Just because someone stumbles and loses their way, it doesn't mean they're lost forever",
         source: 'Professor X (Patrick Stewart)',
         citation: 'X-Men: Days of Future Past',
         year: 2014
     },
     {
-        quote: '"You, me, or nobody is gonna hit as hard as life. But it ain’t about how hard you hit. It’s about how hard you can get hit and keep moving forward."',
+        quote: "You, me, or nobody is gonna hit as hard as life. But it ain’t about how hard you hit. It’s about how hard you can get hit and keep moving forward.",
         source: 'Rocky Balboa (Sylvester Stallone)',
         citation: 'Rocky Balboa',
         year: 2006
     },
     {
-        quote: '“Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.',
+        quote: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.",
         source: 'Jesus Christ',
         citation: 'Matthew 7:7 NIV'
     }
@@ -49,7 +49,18 @@ const getRandomQuote = () => {
 /***
  * `printQuote` function
 ***/
-
+function printQuote() {
+    const quote = getRandomQuote();
+    let html = `<p class="quote">${quote.quote}</p><p class="source">${quote.source}`;
+    if (quote.citation) {
+        html += `<span class="citation">${quote.citation}</span>`;
+    }
+    if (quote.year) {
+        html += `<span class="year">${quote.year}</span>`;
+    }
+    html += `</p>`;
+    document.getElementById('quote-box').innerHTML = html;
+}
 
 /***
  * click event listener for the print quote button
