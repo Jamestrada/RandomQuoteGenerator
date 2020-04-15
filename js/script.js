@@ -1,16 +1,18 @@
 /******************************************
 Treehouse FSJS Techdegree:
 Project 1 - A Random Quote Generator
+
+The random quote generator displays a 
+random quote each time a button is clicked 
+or a period of time has passed.
 ******************************************/
 
-/*** 
- * `quotes` array 
-***/
+// Array of objects to store data of quotes
 const quotes = [
     {
         quote: "Failure doesn't matter: you only have to be right once.",
         source: 'Drew Houston',
-        citation: 'https://news.mit.edu/2013/commencement-address-houston-0607',
+        citation: 'Commencement at MIT',
         year: 2013
     },
     {
@@ -35,20 +37,22 @@ const quotes = [
         citation: 'Matthew 7:7 NIV'
     }
 ];
-// console.log(quotes);
 
-/***
- * `getRandomQuote` function
-***/
+/**
+ * Create a random number to return a random quote object from the quotes array.
+ * 
+ * @returns {object} A quote object that contains 'quote' and 'source' as required properties; 'citation' and 'year' as optionals.
+ */
 const getRandomQuote = () => {
     const randomNumber = Math.floor(Math.random() * quotes.length);
     return quotes[randomNumber];
 };
-// console.log(getRandomQuote());
 
-/***
- * `printQuote` function
-***/
+/**
+ * Get a random quote object and display it in the browser.
+ * 
+ * @returns {undefined} Display quote in the browser through a concatenated html string.
+ */
 function printQuote() {
     const quote = getRandomQuote();
     let html = `<p class="quote">${quote.quote}</p><p class="source">${quote.source}`;
