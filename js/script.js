@@ -25,25 +25,25 @@ const quotes = [
         source: "Professor X (Patrick Stewart)",
         citation: "X-Men: Days of Future Past",
         year: 2014,
-        tags: ["[film]"]
+        tags: ["#film"]
     },
     {
         quote: "It does not matter how slowly you go as long as you do not stop.",
         source: "Confucius",
-        tags: ["[motivational]", "[wisdom]", "[wordstoliveby]"]
+        tags: ["#motivational", "#wisdom", "#wordstoliveby"]
     },
     {
         quote: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.",
         source: "Jesus Christ",
         citation: "Matthew 7:7 NIV",
-        tags: ["[bible]", "[religion]"]
+        tags: ["#bible", "#religion"]
     },
     {
         quote: "You, me, or nobody is gonna hit as hard as life. But it ain’t about how hard you hit. It’s about how hard you can get hit and keep moving forward.",
         source: "Rocky Balboa (Sylvester Stallone)",
         citation: "Rocky Balboa",
         year: 2006,
-        tags: ["[film]"]
+        tags: ["#film"]
     },
     {
         quote: "I have not failed. I've just found 10,000 ways that won't work.",
@@ -86,7 +86,7 @@ function printQuote() {
         html += `<span class="year">${quote.year}</span>`;
     }
     if (quote.tags) {
-        html += `<span style="font-size: 0.9em; font-weight: bold">&ensp;${quote.tags.join(' ')}</span>`; // Inline CSS for new tags property; join list of tag(s) with space.
+        html += `<span class="tags">&ensp;${quote.tags.join(' ')}</span>`; // Join list of tag(s) with space.
     }
     html += `</p>`;
     document.getElementById('quote-box').innerHTML = html;
