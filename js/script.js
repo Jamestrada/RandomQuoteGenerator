@@ -8,48 +8,10 @@ random quote each time a button is clicked
 or a period of time has passed.
 ******************************************/
 
-// Array of objects to store data of quotes
-const quotes = [
-    {
-        quote: "Failure doesn't matter: you only have to be right once.",
-        source: "Drew Houston",
-        citation: "Commencement at MIT",
-        year: 2013
-    },
-    {
-        quote: "Luck is what happens when preparation meets opportunity",
-        source: "Seneca"
-    },
-    {
-        quote: "Just because someone stumbles and loses their way, it doesn't mean they're lost forever",
-        source: "Professor X (Patrick Stewart)",
-        citation: "X-Men: Days of Future Past",
-        year: 2014,
-        tags: ["#film"]
-    },
-    {
-        quote: "It does not matter how slowly you go as long as you do not stop.",
-        source: "Confucius",
-        tags: ["#motivational", "#wisdom", "#wordstoliveby"]
-    },
-    {
-        quote: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.",
-        source: "Jesus Christ",
-        citation: "Matthew 7:7 NIV",
-        tags: ["#bible", "#religion"]
-    },
-    {
-        quote: "You, me, or nobody is gonna hit as hard as life. But it ain’t about how hard you hit. It’s about how hard you can get hit and keep moving forward.",
-        source: "Rocky Balboa (Sylvester Stallone)",
-        citation: "Rocky Balboa",
-        year: 2006,
-        tags: ["#film"]
-    },
-    {
-        quote: "I have not failed. I've just found 10,000 ways that won't work.",
-        source: "Thomas Edison"
-    }
-];
+let lastNumber;
+
+// Pass the function printQuote as a reference into setInterval's handler so it can be called every 17 seconds.
+let timer = setInterval(printQuote, 17000);
 
 /**
  * Create a random number to return a random quote object from the quotes array.
@@ -57,7 +19,12 @@ const quotes = [
  * @returns {object} A quote object that contains 'quote' and 'source' as required properties; 'citation', 'year', and 'tag' as optionals.
  */
 const getRandomQuote = () => {
-    const randomNumber = Math.floor(Math.random() * quotes.length);
+    let randomNumber;
+    // Check if it's a different random number other than the previous one, otherwise get another one to avoid returning the same quote object.
+    do {
+        randomNumber = Math.floor(Math.random() * quotes.length);
+    } while (randomNumber === lastNumber)
+    lastNumber = randomNumber
     return quotes[randomNumber];
 };
 
@@ -74,6 +41,10 @@ const getRandomColor = () => Math.floor(Math.random() * 256);
  * @returns {undefined} Display quote in the browser through a concatenated html string.
  */
 function printQuote() {
+    // Reset timer.
+    clearInterval(timer);
+    timer = setInterval(printQuote, 17000);
+
     // Select the body tag and change the background color to a random one.
     document.querySelector('body').style.backgroundColor = `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`;
 
@@ -91,9 +62,6 @@ function printQuote() {
     html += `</p>`;
     document.getElementById('quote-box').innerHTML = html;
 }
-
-// Pass the function printQuote as a reference into setInterval's handler so it can be called every 17 seconds.
-setInterval(printQuote, 17000);
 
 /***
  * click event listener for the print quote button
